@@ -1,0 +1,22 @@
+package com.luv2code.springcoredemo;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class DemoController {
+    //define a private for the dependency
+    private Coach myCoach;
+
+    //define a constructor for dependency injection
+    @Autowired //tells spring to inject a dependency (optional if there is only 1 constructor)
+    public DemoController(Coach theCoach) {
+        myCoach = theCoach;
+    }
+
+    @GetMapping("/dailyworkout")
+    public String getDailyWorkout(){
+        return myCoach.getDailyWorkout();
+    }
+}
